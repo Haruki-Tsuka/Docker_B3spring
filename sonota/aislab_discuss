@@ -1,0 +1,170 @@
+%%%%%%%%%%%% 上下の余白設定
+\setlength{\topmargin}{7mm}
+\addtolength{\topmargin}{-1in}
+\setlength{\textheight}{257mm}
+
+%%%%%%%%%%%% 左右の余白設定
+\setlength{\oddsidemargin}{20mm}
+\addtolength{\oddsidemargin}{-1in}
+\setlength{\evensidemargin}{17mm}
+\addtolength{\evensidemargin}{-1in}
+\setlength{\textwidth}{172mm}
+
+%%%%%%%%%%%% sectionの設定変更
+\makeatletter
+\renewcommand{\section}{% \newcommand から \renewcommand に変更すること
+  \@startsection{section}% 区切りコマンドの名前（section, subsection等）
+    {1}% 深さ(sectionが1, subsectionは2等）
+    {\z@}% 左のインデント量
+    {\Cvs \@plus.5\Cdp \@minus.2\Cdp}% 前アキ 見出し上のスペース
+    {.1\Cvs \@plus.3\Cdp}% 後アキ 見出し下のスペース 負にすると見出し後のスペース
+    {\normalsize\bf}% 見出しのフォント
+}
+\makeatother
+
+%%%%%%%%%%%% subsectionの設定変更
+\makeatletter
+\renewcommand{\subsection}{% \newcommand から \renewcommand に変更すること
+  \@startsection{subsection}% 区切りコマンドの名前（section, subsection等）
+    {1}% 深さ(sectionが1, subsectionは2等）
+    {\z@}% 左のインデント量
+    {.0\Cvs \@plus.5\Cdp \@minus.2\Cdp}% 前アキ 見出し上のスペース
+    {.00001\Cvs \@plus.3\Cdp}% 後アキ 見出し下のスペース 負にすると見出し後のスペース
+    {\normalsize\bf}% 見出しのフォント
+}
+\makeatother
+
+%%%%%%%%%%%% subsubsectionの設定変更
+\makeatletter
+\renewcommand{\subsubsection}{% \newcommand から \renewcommand に変更すること
+  \@startsection{subsubsection}% 区切りコマンドの名前（section, subsection等）
+    {1}% 深さ(sectionが1, subsectionは2等）
+    {\z@}% 左のインデント量
+    {.0\Cvs \@plus.5\Cdp \@minus.2\Cdp}% 前アキ 見出し上のスペース
+    {.00001\Cvs \@plus.3\Cdp}% 後アキ 見出し下のスペース 負にすると見出し後のスペース
+    {\normalsize\bf}% 見出しのフォント
+}
+\makeatother
+
+%%日本語タイトル用マクロ
+\def\jp__title{}
+\newcommand{\jptitle}[1]{
+	\def\jp__title{#1}
+}
+
+%%英語タイトル用マクロ
+\def\en__title{}
+\newcommand{\entitle}[1]{
+	\def\en__title{#1}
+}
+
+
+\usepackage{tabularx}
+\newcolumntype{C}{>{\centering\arraybackslash}X}
+\newcolumntype{R}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}{>{\raggedleft\arraybackslash}X}
+%%タイトル表示用にmaketitleの設定変更
+\makeatletter
+\renewcommand\maketitle{
+\begin{Huge}
+\begin{table}[t]
+\begin{center}
+	\begin{tabularx}{172mm}{|R L|}
+	\hline
+	AIS Lab. ディスカッション資料 & \@date \\
+	\vspace*{0pt}  & \\
+	\multicolumn{2}{|c|}{ \large{\bf{     \jp__title     }} }\\
+	\multicolumn{2}{|c|}{ \large{\bf{     \en__title    }} }\\ 
+	\vspace*{0pt} & \\
+	\multicolumn{2}{|r|}{ \@author }\\
+	\hline
+	\end{tabularx}
+\end{center}
+\end{table}
+\end{Huge}
+}
+\makeatother
+
+\if 0
+\renewcommand{\figurename}{Fig.} % 図のキャプションを Fig に
+\renewcommand{\tablename}{Table} % 表のキャプションを Table に
+\else
+\renewcommand{\figurename}{図} % 図のキャプションを 図 に
+\renewcommand{\tablename}{表} % 表のキャプションを 表 に
+\fi
+
+
+
+\setlength\floatsep{0pt} %% ページの上下に出力される図と図の間のスペース
+\setlength\textfloatsep{0pt} %% ページの上下に出力される図と本文の間のスペース
+\setlength\intextsep{11pt} %% ページの途中に出力される図と本文の間のスペース
+%\setlength\abovecaptionskip{0pt} %% キャプション上の余白
+%\setlength\belowcaptionskip{0pt} %% キャプション下の余白
+
+
+%%%%% 箇条書きの行間調節
+%% i
+\makeatletter
+\def\@listi{
+\leftmargin
+\leftmargini
+\topsep 0.0pt
+\itemindent 0.0pt
+\rightmargin 0.0pt
+\parsep 0.0pt
+\itemsep 0.0pt
+\parsep 0.0pt
+\partopsep 0.0pt
+\listparindent 0.0pt
+}
+\let\@listI\@listi
+\makeatother
+%% ii
+\makeatletter
+\def\@listii{
+\leftmargin
+\leftmargini
+\topsep 0.0pt
+\itemindent 0.0pt
+\rightmargin 0.0pt
+\parsep 0.0pt
+\itemsep 0.0pt
+\parsep 0.0pt
+\partopsep 0.0pt
+\listparindent 0.0pt
+}
+\let\@listI\@listi
+\makeatother
+%% iii
+\makeatletter
+\def\@listiii{
+\leftmargin
+\leftmargini
+\topsep 0.0pt
+\itemindent 0.0pt
+\rightmargin 0.0pt
+\parsep 0.0pt
+\itemsep 0.0pt
+\parsep 0.0pt
+\partopsep 0.0pt
+\listparindent 0.0pt
+}
+\let\@listI\@listi
+\makeatother
+%% iv
+\makeatletter
+\def\@listiv{
+\leftmargin
+\leftmargini
+\topsep 0.0pt
+\itemindent 0.0pt
+\rightmargin 0.0pt
+\parsep 0.0pt
+\itemsep 0.0pt
+\parsep 0.0pt
+\partopsep 0.0pt
+\listparindent 0.0pt
+}
+\let\@listI\@listi
+\makeatother
+
