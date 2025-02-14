@@ -1,16 +1,22 @@
 \documentclass[11pt, a4paper]{jarticle}
+% \documentclass{jarticle}
 
 %% 【%】を用いた以降のその行の分を無視する
 %% よって【%】はコメントアウトに使用できる
 
-\input{sonota/aislab_discuss} %% ディスカッション資料用の設定を読み込む
+% \input{sonota/aislab_discuss} %% ディスカッション資料用の設定を読み込む
+\usepackage{style/aislab}
 
 \pagestyle{empty} %% ページ番号を消す
 
 %% 図の挿入可
 \usepackage[dvipdfmx]{graphicx} %% ←たぶんこれが一番楽
-\usepackage[]{lastpage}
+\usepackage[]{style/lastpage}
 \usepackage{subcaption}
+
+\usepackage[backend=bibtex]{biblatex}
+\addbibresource{references.bib}
+\defbibheading{bibliography}{\section*{参考文献}}
 
 %%%%%%%%%%%% ページを分数形式
 \makeatletter
@@ -24,7 +30,7 @@
 \pagestyle{myplain}
 
 % 図はfigsのサブディレクトリに集めることにする．
-\graphicspath{{./figs/}}
+\graphicspath{{./figures/}}
 
 \renewcommand{\figurename}{Fig.}
 \renewcommand{\tablename}{Table}
@@ -160,14 +166,16 @@ e & f \\
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{thebibliography}{9}
-\bibitem{aa} 
-あああ　参考文献は必ず文中から参照する
-\bibitem{bb}
-い　複数回参照しても構わない．
-\bibitem{cc}
-この欄の項目は，基本的には文中からの参照順に並べる
-\end{thebibliography}
+% \begin{thebibliography}{9}
+% \bibitem{aa} 
+% あああ　参考文献は必ず文中から参照する
+% \bibitem{bb}
+% い　複数回参照しても構わない．
+% \bibitem{cc}
+% この欄の項目は，基本的には文中からの参照順に並べる
+% \end{thebibliography}
+
+\printbibliography
 
 
 \end{document}
