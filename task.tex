@@ -1,0 +1,226 @@
+\documentclass[11pt, a4paper]{jarticle}
+% \documentclass{jarticle}
+
+%% 【%】を用いた以降のその行の分を無視する
+%% よって【%】はコメントアウトに使用できる
+
+% \input{sonota/aislab_discuss} %% ディスカッション資料用の設定を読み込む
+\usepackage{style/aislab}
+
+\pagestyle{empty} %% ページ番号を消す
+
+%% 図の挿入可
+\usepackage[dvipdfmx]{graphicx} %% ←たぶんこれが一番楽
+\usepackage[]{style/lastpage}
+\usepackage{subcaption}
+
+\usepackage[backend=bibtex,sorting=none]{biblatex}
+\addbibresource{references.bib}
+\defbibheading{bibliography}{\section*{参考文献}}
+
+%%%%%%%%%%%% ページを分数形式
+\makeatletter
+\def\ps@myplain{\let\@mkboth\@gobbletwo%
+\let\ps@jpl@in\ps@plain
+\let\@oddhead\@empty
+\def\@oddfoot{\reset@font\hfil- \thepage / \pageref{LastPage} -\hfil}% lastpage.tds.zipを使うことで x/最終ページ でページ数を表示できる
+\let\@evenhead\@empty
+\let\@evenfoot\@oddfoot}
+\makeatother
+\pagestyle{myplain}
+
+% 図はfigsのサブディレクトリに集めることにする．
+\graphicspath{{./figures/}}
+
+\renewcommand{\figurename}{Fig.}
+\renewcommand{\tablename}{Table}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% ▽本文開始▽
+\begin{document}
+
+
+%% タイトルの設定
+\jptitle{第0回：春の講習会(Docker + LaTeX)} %% 日本語タイトル
+\entitle{0th :Spring Seminars(Docker + LaTeX)} %% 英語タイトル
+\author{B3 塚 春輝} %% 氏名
+\date{2025/03/11} %% 日付
+
+\maketitle %% タイトル作成
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\noindent
+$\bullet$ 前回(20xx/xx/xx)のディスカッション内容\\
+ここでは前回のディスカッション内容を簡単にまとめて書く．
+前回に報告した内容，議論したこと，宿題に出されたことなどを書いて
+今回のディスカッションがスムーズに進行できるようにする\cite{aa}．
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{AISLab の概要}
+Advanced Intelligent System Laboratory (以降；AIS Lab.) は，立命館大学情報理工学部実世界情報
+コースの研究室である．2024年度時点の指導教員は，李 周浩教授，Tran Dinh Tuan助教，藤井 康之
+特任助教の3人である．また，多くの学生が在籍し，2024年度の秋学期には40人の学生が在籍している．
+2024 年度秋学期の学年別在籍人数を Table 1 に示す．
+
+\section{知能化空間と MoMo}
+本研究室で行われてきた研究テーマの一つとして，知能化空間（Intelligent Space：以降，iSpace）[1]
+がある．iSpaceとは，センサネットワークに基づいた拡張環境システムであり，ユーザに様々なサービス
+を提供可能な空間である．Fig.1は，iSpaceの概要を表す図である．iSpaceでは，分散知能ネットワーク
+デバイス（Distributed Intelligent Network Devices：以降，DIND）が壁や天井に設置されている．ユー
+ザの要求と空間的状況は，カメラやマイクなどのDINDのセンサによって認識され，iSpaceのすべての
+DIND に共有される．プロジェクタ，スピーカやロボットなどの出力デバイスを備えたDINDは，認識さ
+れた結果に基づいて適切なサービスを行う．これによって空間内のユーザに対する情報的・物理的なサー
+ビスの提供を実現できる．この研究分野に対しては，多様なアプローチの研究が行われている．
+
+しかし，様々な空間の状況を把握し，適切なサービスを行うためには，多数のデバイスが空間に配置
+されたり，各サービスに合わせてデバイスの位置が適宜変更されたりする必要がある．これらはコスト
+がかかり，固定されたデバイスを逐一手作業で再配置するのは現実的ではない．この問題に対して，移
+動ロボットによる空間内のデバイスの再配置を行う再構成可能な知能化空間（ReconfigurableIntelligent
+ Space：以降，R+iSpace）の提案がされた[2]．R+iSpace では，DIND を含む様々なデバイスを搭載し
+て壁面または天井面を自由に移動するロボットとして，MobileModule（以降，MoMo）が開発された．
+
+\section{本日の内容}
+本章では，本日の講習会の内容を簡単に説明する．
+\subsection{GNU/Linux コマンド}
+GNU/Linux コマンドは，CLI で Linux を操作するためのコマンドである．”ls” コマンドは，〇〇を
+行い，”cat” コマンドは，〇〇を行う．
+\begin{table}[tb] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ  %% t>b の順で図の挿入場所が優先される
+	\caption{2024年度秋学期の学年別在籍人数}
+	\label{table1}
+	\begin{center}
+	\begin{tabular}{| l | c | r |}
+	\hline
+	学年 & 在籍人数[人] \\ \hline
+	D3 & 1  \\ \hline
+    D2 & 2  \\ \hline
+    D1 & 1  \\ \hline
+    M2 & 6  \\ \hline
+    M1 & 8  \\ \hline
+    B4 & 10  \\ \hline
+    B3 & 12  \\ \hline
+    合計 & 40  \\ \hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+\begin{figure}[tb] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ  %% t>b の順で図の挿入場所が優先される
+	\begin{center}
+	\includegraphics[width=70mm]{figure3.png}
+	\caption{Outline of iSpace[1]}
+	\label{figure1}
+	\end{center}
+\end{figure}
+
+\begin{figure}[tb] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ  %% t>b の順で図の挿入場所が優先される
+	\begin{center}
+	\includegraphics[width=70mm]{figure3.png}
+	\caption{Output image}
+	\label{figure2}
+	\end{center}
+\end{figure}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{文章}
+文章は【です・ます】ではなく，【だ・である】にし，口語ではなく文語形式で作成する．
+また，【。・、】に関しては，そのままでも良いし，【．・，】でも良い．
+
+\section{図と表,そして式}
+簡単に図，表，式等に関して説明する．ここに入れる図，表，式は必ず完成度が高いものにする．
+その理由はこの資料を作成して終わりにするのではなく，
+この資料を論文作成などにも利用できるようにするためである．
+すなわち，一度作成したものは再利用できるように品質の高いものにする．
+図や表はなるべくページの一番上か一番下に配置するのが好ましい．
+\subsection{図の場合}
+図を挿入する場合はキャプションを必ず書く．図番号は\LaTeX が自動で付加してくれる．
+図のキャプションは図の下に書く．
+
+
+\begin{figure}[b] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ
+	\begin{center}
+	%% width は表示したい横サイズ
+	\includegraphics[width=60mm]{figure1.pdf} %% 挿入画像の指定
+	\caption{図のキャプションは必ず書く} %% キャプション
+	\label{figure0} %% ラベル．ラベルを書くと，\ref{}を使用して参照することができる．
+	\end{center}
+\end{figure}
+\begin{figure}[tb] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ  %% t>b の順で図の挿入場所が優先される
+	\begin{center}
+	\includegraphics[width=70mm]{figure2.jpg}
+	\caption{図番号は\LaTeX が自動で連番にしてくれる}
+	\label{figure2}
+	\end{center}
+\end{figure}
+ちなみに，図\ref{figure1}はベクタ形式，図\ref{figure2}はラスタ形式である．
+基本的にラスタ形式(jpgやpngなど)よりもベクタ形式(epsなど)の方が，「拡大してもギザギザにならない」等の利点もあるため，読み手からは好まれる．
+
+\pagebreak % 改ページ
+
+\subsection{表の場合}
+表も図と同様である．番号を付けた図や表は図\ref{figure1}，図\ref{figure2}，表\ref{table1}のように文中から参照する方が望ましい．
+表のキャプションは表の上に書く．
+\begin{table}[tb] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ  %% t>b の順で図の挿入場所が優先される
+	\caption{表の例}
+	\label{table1}
+	\begin{center}
+	\begin{tabular}{| l | c | r |}
+	\hline
+	a & b & c \\ \hline
+	あいう & えお & かきくけこ \\ \hline
+	\end{tabular}
+	\end{center}
+\end{table}
+
+\subsection{式の場合}
+数式を入れるときは必ず式(\ref{equation1})のように数式番号を右に記載する．
+数式番号の記載は\LaTeX が自動で行ってくれる．
+\begin{equation}
+\left (
+\begin{array}{cc}
+a & b \\
+c & d \\
+e & f \\
+\end{array} 
+\right )
+\left (
+\begin{array}{c}
+\alpha \\
+\beta \\
+\end{array} 
+\right )
+=
+\left (
+\begin{array}{c}
+\Phi \\
+\Gamma \\
+\Psi \\
+\end{array} 
+\right )
+\label{equation1}
+\end{equation}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{今後の計画}
+最後は必ずこれからの計画を書く．やることの内容といつまで何処までをやるかを明記する\cite{cc}．
+\begin{table}[h] %% h=この場所，t=ページ上，b=ページ下，p=単独ページ
+	\begin{tabular}{| p{14mm} | p{90mm} |}
+	\hline
+	日付   & 達成内容                   \\ \hline \hline
+	～x/x  & \LaTeX を勉強する          \\ \hline
+	～x/xx & \LaTeX のテンプレートを作る \\ \hline
+	\end{tabular}
+\end{table}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\printbibliography
+
+
+\end{document}
